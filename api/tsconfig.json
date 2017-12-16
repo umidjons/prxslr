@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationDir": "typings",
+    "skipLibCheck": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": false,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "lib": [
+      "es2017"
+    ],
+    "types": [
+      "node"
+    ]
+  },
+  "files": [
+    "./node_modules/@types/node/index.d.ts"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

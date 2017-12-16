@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button [routerLink]="['./signin']" routerLinkActive="active" type="button" class="btn btn-light">Авторизация</button>
+    <button [routerLink]="['./signup']" routerLinkActive="active" type="button" class="btn btn-light">Регистрация</button>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

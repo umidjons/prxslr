@@ -1,0 +1,37 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index",
+    "dev": "DEBUG=api* ./node_modules/.bin/tsc-watch --onSuccess \"node dist/index\""
+  },
+  "author": "umidjons",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "connect-mongodb-session": "^1.4.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongodb": "^3.0.0-rc0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "tslib": "^1.8.1",
+    "validator": "^9.2.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^1.0.0",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/express": "^4.0.39",
+    "@types/express-session": "^1.15.6",
+    "@types/mongodb": "^2.2.17",
+    "@types/node": "^8.0.58",
+    "@types/passport": "^0.4.1",
+    "@types/passport-local": "^1.0.32",
+    "@types/validator": "^6.3.0",
+    "cors": "^2.8.4",
+    "tsc-watch": "^1.0.10"
+  }
+}

@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      - ./ui/dist:/var/www/html
+    networks:
+      - prx
+    restart: always
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27020:27017'
+    volumes:
+      - prxdata:/data/db
+    networks:
+      - prx
+    restart: always
+
+networks:
+  prx:
+
+volumes:
+  prxdata:

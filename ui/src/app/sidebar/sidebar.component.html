@@ -1,0 +1,32 @@
+<ul class="sidebar-items">
+  <li class="sidebar-item">
+    <a [routerLink]="['./proxy-list']" routerLinkActive="active">
+      <div><i class="fa fa-2x fa-microchip"></i></div>
+      <div>Мои прокси</div>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a [routerLink]="['./order-list']" routerLinkActive="active">
+      <div><i class="fa fa-2x fa-shopping-cart"></i></div>
+      <div>Мои заказы</div>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a [routerLink]="['./pay-list']" routerLinkActive="active">
+      <div><i class="fa fa-2x fa-credit-card"></i></div>
+      <div>Мои покупки</div>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a [routerLink]="['./profile']" routerLinkActive="active">
+      <div><i class="fa fa-2x fa-user-circle"></i></div>
+      <div>Профиль</div>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a (click)="signOut()">
+      <div><i class="fa fa-2x fa-power-off"></i></div>
+      <div>Выйти</div>
+    </a>
+  </li>
+</ul>

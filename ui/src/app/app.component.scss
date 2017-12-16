@@ -1,0 +1,10 @@
+@import "../variables";
+
+.sidebar {
+  max-width: $sidebar-width;
+  flex: 1;
+}
+
+.main {
+  flex: 1;
+}

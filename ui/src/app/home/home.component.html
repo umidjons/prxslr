@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <nav class="col-sm-3 col-md-2 sidebar">
+      <prx-auth *ngIf="!isAuthorized()"></prx-auth>
+    </nav>
+
+    <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2">
+      <prx-calculator></prx-calculator>
+
+      <prx-features></prx-features>
+
+      <prx-price-table></prx-price-table>
+    </main>
+
+  </div>
+</div>

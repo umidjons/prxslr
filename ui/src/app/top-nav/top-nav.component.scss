@@ -1,0 +1,21 @@
+@import "../../variables";
+
+.navbar-nav {
+  margin-left: -32px;
+}
+
+.nav-item-current-balance {
+  margin: -9px 20px -8px 20px;
+  background: $color1;
+}
+
+.nav-link.nav-link-balance, .nav-link.nav-link-balance:hover {
+  font-size: 1.5rem;
+  line-height: $top-nav-height;
+  padding: 0 20px;
+  color: $color3;
+  .amount {
+    color: $color2;
+    font-weight: bold;
+  }
+}
