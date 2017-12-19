@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProxyService } from '../../services/proxy.service';
 
 @Component({
   selector: 'prx-proxy-list',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProxyListComponent implements OnInit {
 
-  constructor() { }
+  public proxies = [];
+
+  constructor(private proxyService: ProxyService) { }
 
   ngOnInit() {
+    this.proxyService.list().subscribe((items) => {
+      console.log('items=', items);
+      this.proxies = items;
+    });
   }
 
 }

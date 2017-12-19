@@ -1,3 +1,53 @@
-<p>
-  proxy-list works!
-</p>
+<table class="table table-bordered table-hover table-dark">
+  <thead>
+  <tr>
+    <th>IP</th>
+    <th>Port</th>
+    <th>Логин</th>
+    <th>Пароль</th>
+    <th>Протокол</th>
+    <th class="column column-status">Статус</th>
+    <th>Дата</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let proxy of proxies">
+    <td>{{ proxy.ip }}</td>
+    <td>{{ proxy.port }}</td>
+    <td>{{ proxy.login }}</td>
+    <td>{{ proxy.password }}</td>
+    <td>
+      <ul class="list-unstyled">
+        <li *ngFor="let proto of proxy.protocols">{{ proto }}</li>
+      </ul>
+    </td>
+    <td>
+      <div *ngIf="proxy.state===1" class="circle bg-success">
+        <i class="fa fa-fw fa-check"></i>
+      </div>
+      <div *ngIf="proxy.state===0" class="circle bg-warning">
+        <i class="fa fa-fw fa-ban"></i>
+      </div>
+      <div *ngIf="proxy.state===-1" class="circle bg-danger">
+        <i class="fa fa-fw fa-times"></i>
+      </div>
+    </td>
+    <td>
+      <ul class="list-unstyled date-list">
+        <li><span class="date-title">Создан:</span> {{ proxy.created_at | date: 'dd.MM.y HH:mm.ss' }}</li>
+        <li><span class="date-title">Активирован:</span> {{ proxy.activated_at | date: 'dd.MM.y HH:mm.ss' }}</li>
+        <li><span class="date-title">Срок:</span> {{ proxy.expired_at | date: 'dd.MM.y HH:mm.ss' }}</li>
+      </ul>
+    </td>
+    <td>
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-success" title="продлит"><i class="fa fa-fw fa-clock-o"></i></button>
+        <button type="button" class="btn btn-warning" title="деактивировать"><i class="fa fa-fw fa-ban"></i></button>
+        <button type="button" class="btn btn-danger" title="удалить"><i class="fa fa-fw fa-times"></i></button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -18,6 +18,7 @@ import { AuthComponent } from './auth/auth.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { AuthService } from './services/auth.service';
+import { ProxyService } from './services/proxy.service';
 import { ToastsCustomOptions } from './toasts-custom-options';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorService } from './interceptors/error.interceptor';
@@ -63,7 +64,8 @@ import { AuthGuard } from './guards/auth.guard';
     {provide: HTTP_INTERCEPTORS, useClass: ErrorService, multi: true},
     CookieService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    ProxyService
   ],
   bootstrap: [AppComponent]
 })

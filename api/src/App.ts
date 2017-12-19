@@ -6,6 +6,7 @@ import * as passport from 'passport';
 import * as debug from 'debug';
 import Auth from './Auth';
 import Config from './config';
+import Proxies from './models/Proxies';
 
 const log = debug('api:App');
 
@@ -77,6 +78,12 @@ class App {
         // todo: configure restricted routes
         log('restrictedRoutes()');
         return this.router
+            .get('/proxies', async (req, res) => {
+                // log(`req.user=%O`, req.user);
+                const items = await new Proxies().findByUserId(req.user._id);
+                log(`items=%O`, items);
+                res.json({success: true, result: items});
+            })
             .get('/restricted', (req, res) => {
                 log(`req.session=${req.session.id}`);
                 res.json({message: 'Hello from Restricted Area'});
