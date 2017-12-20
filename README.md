@@ -32,3 +32,9 @@ db.users.insert({email: 'admin@test.tt', password: '123', state: 1})
 cd api
 npm run dev
 ```
+
+### Populate collections with sample data
+
+```bash
+DEBUG=* node api/dist/scripts/populate.js
+```

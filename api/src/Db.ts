@@ -7,12 +7,13 @@ const log = debug('api:Db');
 export default class Db {
 
     private static _db: mongo.Db;
+    private static _client: any;
 
     public static async connect() {
         log(`Connecting to ${Config.DB_URI}...`);
         try {
-            const client = await mongo.MongoClient.connect(Config.DB_URI);
-            Db._db = client.db(Config.DB_NAME);
+            Db._client = await mongo.MongoClient.connect(Config.DB_URI);
+            Db._db = Db._client.db(Config.DB_NAME);
             log('Succeeded. Db:', Config.DB_NAME);
         } catch (err) {
             log(`Failed: ${err}`);
@@ -22,6 +23,10 @@ export default class Db {
 
     public static getDb(): mongo.Db {
         return Db._db;
+    }
+
+    public static getClient() {
+        return Db._client;
     }
 
     public static ObjectId(id: string): mongo.ObjectID {
