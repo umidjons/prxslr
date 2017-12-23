@@ -5,6 +5,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule, ToastOptions, ToastsManager } from 'ng2-toastr';
 import { CookieService } from 'ng2-cookies';
+import localeRu from '@angular/common/locales/ru';
+import { registerLocaleData } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -29,7 +31,9 @@ import { OrderListComponent } from './dashboard/order-list/order-list.component'
 import { PayListComponent } from './dashboard/pay-list/pay-list.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { BuyComponent } from './dashboard/pay-list/buy/buy.component';
+import { CountryService } from './services/country.service';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,8 @@ import { AuthGuard } from './guards/auth.guard';
     ProxyListComponent,
     OrderListComponent,
     PayListComponent,
-    ProfileComponent
+    ProfileComponent,
+    BuyComponent
   ],
   imports: [
     BrowserModule,
@@ -65,8 +70,14 @@ import { AuthGuard } from './guards/auth.guard';
     CookieService,
     AuthService,
     AuthGuard,
-    ProxyService
+    ProxyService,
+    CountryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    registerLocaleData(localeRu);
+  }
+}

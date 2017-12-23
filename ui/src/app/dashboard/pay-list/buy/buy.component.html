@@ -1,0 +1,142 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-4 col-2">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"><i class="fa fa-fw fa-filter"></i> Фильтр</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="filter">
+
+            <div class="form-group">
+              <label for="proxyType" class="col-form-label">Тип</label>
+              <select id="proxyType" class="form-control" formControlName="type">
+                <option value="">Выберите тип прокси</option>
+                <option *ngFor="let type of proxyTypes" [value]="type._id">{{ type.title }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="country" class="col-form-label">Страна</label>
+              <select id="country" class="form-control" formControlName="country_id">
+                <option value="">Выберите страну</option>
+                <option *ngFor="let country of countries" [value]="country._id">{{ country.title }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="protocols" class="col-form-label">Протокол</label>
+              <select id="protocols" class="form-control" formControlName="protocols">
+                <option value="">Выберите протокол</option>
+                <option *ngFor="let protocol of protocols" [value]="protocol._id">{{ protocol.title }}</option>
+              </select>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-8 col-10">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"><i class="fa fa-fw fa-shopping-cart"></i> Корзина</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="order">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>№</th>
+                <th>Тип</th>
+                <th>Страна</th>
+                <th>Протоколы</th>
+                <th>Цена</th>
+                <th>Период</th>
+                <th style="width: 100px;">Количество</th>
+                <th>Стоимость</th>
+              </tr>
+              </thead>
+
+              <tbody formArrayName="items">
+              <tr *ngFor="let item of order.controls.items.controls; let i = index;" [formGroupName]="i">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.controls.product.value.title }}</td>
+                <td>{{ countryById(item.controls.product.value.country_id).title }}</td>
+                <td>{{ item.controls.product.value.protocols.join(', ') }}</td>
+                <td>{{ item.controls.product.value.price | number: '1.2-2':'ru' }}</td>
+                <td>
+                  <select formControlName="duration" class="form-control">
+                    <option *ngFor="let period of periods" [value]="period._id">{{ period.title }}</option>
+                  </select>
+                </td>
+                <td>
+                  <input type="number" formControlName="count" class="form-control">
+                </td>
+                <td>{{ item.value.totalPrice | number: '1.2-2':'ru' }}</td>
+              </tr>
+              </tbody>
+            </table>
+
+            <div class="form-row">
+              <div class="col-sm-6 col-md-3 col-2">
+                <label for="totalCount" class="col-form-label">Общая количество</label>
+                <input type="text" readonly class="form-control" id="totalCount" formControlName="count">
+              </div>
+
+              <div class="col-sm-6 col-md-3 col-2">
+                <label for="totalPrice" class="col-form-label">Сумма к оплате</label>
+                <input type="text" readonly class="form-control" id="totalPrice" formControlName="price">
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+
+        <div class="card-footer">
+          <button type="submit" class="btn btn-lg btn-success">Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-6 col-md-3 col-2" *ngFor="let prod of filteredProducts">
+      <div class="card">
+        <div class="card-header bg-dark">
+          <h4 class="card-title text-light">{{ prod.title }}</h4>
+        </div>
+
+        <table class="table">
+          <tbody>
+          <tr>
+            <th>Тип</th>
+            <td>{{ prod.type }}</td>
+          </tr>
+          <tr>
+            <th>Страна</th>
+            <td>{{ countryById(prod.country_id).title }}</td>
+          </tr>
+          <tr>
+            <th>Протоколы</th>
+            <td><span *ngFor="let proto of prod.protocols" class="badge badge-info">{{ proto }}</span></td>
+          </tr>
+          <tr>
+            <th>Цена</th>
+            <td>{{ prod.price | number }}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div class="card-footer text-center bg-dark">
+          <button type="button" class="btn btn-success" (click)="addToCart(prod)">
+            <span class="fa fa-fw fa-cart-plus"></span> Добавить в корзину
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -7,6 +7,8 @@ import * as debug from 'debug';
 import Auth from './Auth';
 import Config from './config';
 import Proxies from './models/Proxies';
+import Country from './models/Country';
+import Product from './models/Product';
 
 const log = debug('api:App');
 
@@ -78,6 +80,8 @@ class App {
         // todo: configure restricted routes
         log('restrictedRoutes()');
         return this.router
+            .get('/countries', this.getCountries)
+            .get('/products', this.getProducts)
             .get('/proxies', async (req, res) => {
                 // log(`req.user=%O`, req.user);
                 const items = await new Proxies().findByUserId(req.user._id);
@@ -88,6 +92,18 @@ class App {
                 log(`req.session=${req.session.id}`);
                 res.json({message: 'Hello from Restricted Area'});
             });
+    }
+
+    private async getCountries(req, res) {
+        const items = await new Country().find();
+        log(`items=%o`, items);
+        res.json({success: true, result: items});
+    }
+
+    private async getProducts(req, res) {
+        const items = await new Product().find();
+        log(`items=%o`, items);
+        res.json({success: true, result: items});
     }
 }
 
